@@ -13,7 +13,7 @@ import { fileURLToPath, URL } from 'node:url';
  * romperebbe il preview della build (gli asset finirebbero in 404).
  * Dev e preview servono quindi su http://localhost:PORT/<REPO>/.
  */
-const REPO = 'fdi-2026-sapienza-ingegneria-elettronica';
+const REPO = 'fondamenti-di-informatica-AEFIN';
 
 export default defineConfig(() => ({
   base: `/${REPO}/`,

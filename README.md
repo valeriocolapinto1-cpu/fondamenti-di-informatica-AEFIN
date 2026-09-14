@@ -8,7 +8,7 @@ Diciassette moduli scritti per **partire da zero**, ottantacinque esercizi svolt
 passo, quarantacinque schemi da completare e un motore che genera prove sempre diverse e le
 corregge da sé.
 
-### → **[Apri il sito](https://valeriocolapinto1-cpu.github.io/fdi-2026-sapienza-ingegneria-elettronica/)**
+### → **[Apri il sito](https://valeriocolapinto1-cpu.github.io/fondamenti-di-informatica-AEFIN/)**
 
 Funziona anche da telefono e, dopo la prima visita, **offline**: si installa come app dal menu
 del browser.

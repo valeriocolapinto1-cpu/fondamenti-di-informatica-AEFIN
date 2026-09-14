@@ -18,10 +18,10 @@ export const SITE_TITLE = 'AE·FIN — Palestra di Architettura degli Elaborator
  * questa riga è l'unico punto da toccare.
  */
 export const SITE_URL =
-  'https://valeriocolapinto1-cpu.github.io/fdi-2026-sapienza-ingegneria-elettronica';
+  'https://valeriocolapinto1-cpu.github.io/fondamenti-di-informatica-AEFIN';
 
 export const REPO_URL =
-  'https://github.com/valeriocolapinto1-cpu/fdi-2026-sapienza-ingegneria-elettronica';
+  'https://github.com/valeriocolapinto1-cpu/fondamenti-di-informatica-AEFIN';
 
 /**
  * Chi risponde del sito.
