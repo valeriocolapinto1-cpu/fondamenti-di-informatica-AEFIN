@@ -5,10 +5,10 @@ import type { LinkItem } from './types';
  *
  * Qui c'erano anche la pagina personale di un docente, il regolamento del suo
  * esame, le slide di un terzo e un archivio di prove d'esame reali. Sono usciti
- * tutti: il sito non si rivolge più a un corso specifico, e un collegamento a
- * una persona identificabile — da un sito con la pubblicità sopra — la associa
- * a qualcosa che non ha approvato. L'archivio delle prove aveva in più il
- * problema di essere materiale di cui qualcun altro detiene i diritti.
+ * tutti: il sito non si rivolge più a un corso specifico, quindi un
+ * collegamento a una persona identificabile la assocerebbe a qualcosa che non
+ * ha approvato. L'archivio delle prove aveva in più il problema di essere
+ * materiale di cui qualcun altro detiene i diritti.
  *
  * Restano i libri: citare un titolo in bibliografia è lecito sempre e non
  * dipende da nessuna eccezione. Nessuna delle voci ha un `url`, e non è una

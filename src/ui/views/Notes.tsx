@@ -12,10 +12,11 @@ import { storage } from '~/store/storage';
  * davvero è dire con precisione che cosa il sito **non** fa, da chi non è
  * approvato, e a chi si scrive se qualcosa non va.
  *
- * Quando arriverà la pubblicità questa pagina va riscritta, non ritoccata:
- * «nessun cookie, nessun servizio esterno» diventerà falso, e un'informativa
- * che promette il contrario di quel che succede è peggio di nessuna
- * informativa.
+ * Se un giorno il sito dovesse caricare qualcosa da fuori — un servizio di
+ * statistiche, un font remoto, qualsiasi cosa — questa pagina va **riscritta**,
+ * non ritoccata: «nessun cookie, nessun servizio esterno» diventerebbe falso, e
+ * un'informativa che promette il contrario di quel che succede è peggio di
+ * nessuna informativa.
  */
 export function Notes(): JSX.Element {
   return (

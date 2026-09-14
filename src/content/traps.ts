@@ -8,8 +8,8 @@ import type { Trap } from './types';
  * «le trappole del docente»: affermazioni di terza mano su che cosa una
  * persona reale si aspetta, gradisce o considera sbagliato. Il badge «da
  * verificare» serviva ad ammettere che nessuno le aveva confermate — ma un
- * badge non rende innocua un'affermazione su qualcuno, e su un sito con la
- * pubblicità sopra la faccenda peggiora invece di migliorare.
+ * badge non rende innocua un'affermazione su una persona reale: la dichiara
+ * incerta e la lascia lì.
  *
  * Quello che restava di utile, tolta la provenienza, era vero da sé: sono
  * fatti sulla notazione, che stanno in piedi senza appoggiarsi a nessuno.

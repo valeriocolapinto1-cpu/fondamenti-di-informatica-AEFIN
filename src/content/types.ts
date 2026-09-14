@@ -145,8 +145,8 @@ export interface Trap {
  *
  * Non ha un `url` e non è una svista: l'elenco conteneva anche pagine di
  * persone e archivi di terzi, ed è stato ridotto ai libri. Un titolo in
- * bibliografia si cita sempre; un collegamento, da un sito con la pubblicità
- * sopra, tira dentro qualcuno che non ha chiesto di esserci.
+ * bibliografia si cita sempre; un collegamento tira dentro qualcuno che non ha
+ * chiesto di esserci.
  */
 export interface LinkItem {
   id: string;

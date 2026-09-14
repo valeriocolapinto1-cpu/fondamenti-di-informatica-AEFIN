@@ -1,6 +1,6 @@
 # Provenienza dei contenuti e revisione di conformità
 
-*Ultima revisione: 5 settembre 2026.*
+*Ultima revisione: 14 settembre 2026.*
 
 Questo documento dice **da dove viene** quello che si legge sul sito, con quale criterio è stato
 verificato e come si chiede di rimuovere qualcosa. Serve a chi ci studia sopra, a chi possiede
@@ -21,18 +21,19 @@ prove d'esame reali, e non c'è alcun legame con un corso, un'università o un d
 
 ## Perché questa revisione
 
-Il sito nasce come progetto di studio personale, gratuito. In quella forma si appoggiava, senza
-dirselo, all'eccezione dell'**art. 70 della legge 633/1941**, che consente riassunti e
-riproduzioni per uso didattico — ma solo *«per finalità illustrative e per fini non
-commerciali»*.
+Il sito nasce come progetto di studio personale. In quella forma si appoggiava, senza dirselo,
+all'eccezione dell'**art. 70 della legge 633/1941**, che consente riassunti e riproduzioni per
+uso didattico — ma solo *«per finalità illustrative e per fini non commerciali»*.
 
-Il sito sta per diventare pubblico e finanziato dalla pubblicità. Da quel momento l'uso è
-commerciale e quell'eccezione non si applica più: qualsiasi contenuto che vi si appoggiava
-andava reso indipendente **prima** di monetizzare, non dopo una contestazione.
+Appoggiarsi a un'eccezione è diverso dal non averne bisogno. L'eccezione va dimostrata, si
+discute caso per caso, e si perde il giorno in cui qualcosa cambia — basta che il sito smetta
+di essere gratuito. Contenuti scritti da zero non hanno bisogno di essere difesi da nessuno:
+sono semplicemente propri.
 
-La stessa scelta ha risolto un secondo problema, di natura diversa: un sito rivolto a un corso
-specifico, con la pubblicità sopra, mette il nome di un'istituzione e di una persona reale
-accanto a un'attività economica che non hanno approvato.
+C'era poi un secondo problema, di natura diversa dal diritto d'autore: un sito pubblico rivolto
+a un corso specifico accosta il nome di un'istituzione e di una persona reale a qualcosa che
+non hanno approvato, e nessun disclaimer lo impedisce del tutto. Toglierli è stato più semplice
+che circondarli di avvertenze.
 
 ---
 
@@ -43,11 +44,11 @@ accanto a un'attività economica che non hanno approvato.
 | Catalogo di 156 tavole del libro di testo, con numero e descrizione | Era la trascrizione dell'indice delle figure di un'opera altrui: una mappa di quel libro, non contenuto proprio |
 | Il campo `ref` con il capitolo del testo su ~280 voci | Legava contenuti originali alla struttura di un'opera altrui; il rimando ora punta al modulo di questo sito che spiega l'argomento |
 | Uno schema chiamato «la sveglia su chip», con il timer dei minuti e il timer del tono | Non descriveva un sistema su singolo chip: descriveva **l'esempio scelto da un autore** per spiegarlo. Sostituito da uno schema generico |
-| Il collegamento alla pagina personale di un docente e al regolamento del suo esame | Un sito con la pubblicità sopra che rimanda a una persona identificabile la associa a un'attività che non ha approvato |
-| Il collegamento a un archivio di prove d'esame reali | Testi di cui il docente detiene i diritti; linkarli da un sito monetizzato significa trarne un beneficio economico |
+| Il collegamento alla pagina personale di un docente e al regolamento del suo esame | Il sito non si rivolge più a un corso specifico: un rimando a una persona identificabile la assocerebbe a qualcosa che non ha approvato |
+| Il collegamento a un archivio di prove d'esame reali | Testi di cui il docente detiene i diritti |
 | Le «trappole del docente», poi «accortezze raccolte dagli studenti» | Affermazioni di terza mano su che cosa una persona reale gradisce o penalizza. Quello che restava di utile era vero da sé, e ora è scritto come fatto sulla notazione |
-| L'affermazione che la prova riproducesse il formato di un esame reale | Ricostruzione da appunti mai verificata. Su un sito commerciale un'affermazione del genere non è più solo imprecisa |
-| Il nome dell'università da titolo, descrizione, anteprima social e manifest | Il regolamento sul marchio disciplina anche l'uso della denominazione, e la pubblicità rende commerciale l'uso che se ne fa |
+| L'affermazione che la prova riproducesse il formato di un esame reale | Era una ricostruzione da appunti che nessuno aveva mai confrontato con una fonte: dirla per certa a chi ci sta preparando un esame è il danno peggiore che questo sito potesse fare |
+| Il nome dell'università da titolo, descrizione, anteprima social e manifest | Il regolamento sul marchio disciplina anche l'uso della denominazione; nel corpo del sito resta l'uso nominativo lecito, cioè dire di che cosa il sito non fa parte |
 | Un file di prototipo che conteneva il cognome di un docente e frasi su cosa gradisce | Non finiva sul sito, ma il repository è pubblico |
 
 ---

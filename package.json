@@ -6,8 +6,7 @@
   "description": "Palestra di Architettura degli Elaboratori: teoria, esercizi svolti e prove di autovalutazione",
   "scripts": {
     "dev": "vite",
-    "build": "vitest run && tsc --noEmit && vite build",
-    "build:only": "vite build",
+    "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
