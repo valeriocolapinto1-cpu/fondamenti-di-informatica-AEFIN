@@ -1,13 +1,33 @@
-import type { HamacherRef, TopicId } from './types';
+import type { TopicId } from './types';
 
 /**
  * Schemi da completare.
  *
- * All'esame c'è sempre un «completare l'immagine»: si riceve un disegno con
- * alcune etichette mancanti e l'elenco di quelle da collocare. Qui ogni schema
- * è **ridisegnato in forma originale** — stessa struttura logica dello schema
- * di riferimento, tratto nostro — e le etichette sono dati, così lo stesso
- * disegno serve sia da figura sia da esercizio.
+ * Sono disegni **di questo sito**: rappresentano strutture standard
+ * dell'architettura dei calcolatori — un multiplexer, una cache a mappatura
+ * diretta, una pipeline a cinque stadi — cioè informazione tecnica che
+ * qualunque testo descrive allo stesso modo perché nessuno l'ha inventata.
+ * Nessuna illustrazione altrui è ricalcata: la struttura di un decodificatore
+ * è un fatto, il modo particolare in cui un editore l'ha impaginata no.
+ *
+ * REGOLA PER CHI NE AGGIUNGE UNO — tre domande, e se una risposta è «sì» lo
+ * schema va rifatto:
+ *
+ *  1. usa etichette o sigle prese da un testo dove esisterebbe un nome comune?
+ *  2. ricalca l'impaginazione di una tavola precisa, invece della struttura
+ *     logica che qualsiasi testo userebbe per quel concetto?
+ *  3. contiene i valori di un esempio svolto altrui — numeri, indirizzi, il
+ *     dispositivo scelto da qualcun altro per illustrare il concetto?
+ *
+ * È la terza che è meno ovvia. Uno schema chiamato «la sveglia su chip», con
+ * il timer dei minuti e il timer del tono, non descrive un sistema su singolo
+ * chip: descrive **l'esempio con cui un autore ha scelto di spiegarlo**. Al
+ * suo posto c'è ora `soc-blocchi`, che mostra la stessa struttura — processore,
+ * memoria, timer e interfacce su una rete di interconnessione — senza vestirla
+ * dell'esempio di nessuno.
+ *
+ * Le etichette sono dati, così lo stesso disegno serve sia da figura sia da
+ * esercizio: se ne nascondono alcune e si chiede di ricollocarle.
  *
  * Le coordinate sono nel sistema del `viewBox`: la UI le converte in
  * percentuali, quindi lo schema resta leggibile a qualunque larghezza.
@@ -25,7 +45,6 @@ export interface Diagram {
   id: string;
   title: string;
   topic: TopicId;
-  ref: HamacherRef;
   width: number;
   height: number;
   /** Disegno di base, senza le etichette da indovinare. */
@@ -49,7 +68,6 @@ export const diagrams: Diagram[] = [
     id: 'unita-funzionali',
     title: 'Unità funzionali di un calcolatore',
     topic: 'cpu',
-    ref: 'Hamacher cap. 1',
     width: 620,
     height: 330,
     slots: [
@@ -86,9 +104,8 @@ export const diagrams: Diagram[] = [
 
   {
     id: 'processore-3bus',
-    title: 'Processore CISC a tre bus',
+    title: 'Percorso dati a tre bus',
     topic: 'cpu',
-    ref: 'Hamacher cap. 5',
     width: 620,
     height: 400,
     slots: [
@@ -129,7 +146,6 @@ export const diagrams: Diagram[] = [
     id: 'cache-set-associativa',
     title: 'Cache a corrispondenza associativa a gruppi',
     topic: 'mem',
-    ref: 'Hamacher cap. 8',
     width: 640,
     height: 420,
     slots: [
@@ -176,7 +192,6 @@ export const diagrams: Diagram[] = [
     id: 'gerarchia-memoria',
     title: 'Gerarchia di memoria',
     topic: 'mem',
-    ref: 'Hamacher cap. 8',
     width: 560,
     height: 350,
     slots: [
@@ -204,7 +219,6 @@ export const diagrams: Diagram[] = [
     id: 'memoria-virtuale-tlb',
     title: 'Traduzione dell’indirizzo virtuale',
     topic: 'vm',
-    ref: 'Hamacher cap. 8',
     width: 620,
     height: 320,
     slots: [
@@ -242,7 +256,6 @@ export const diagrams: Diagram[] = [
     id: 'pipeline-5-stadi',
     title: 'Percorso dati a pipeline di cinque stadi',
     topic: 'pipe',
-    ref: 'Hamacher cap. 6',
     width: 660,
     height: 220,
     slots: [
@@ -275,7 +288,6 @@ export const diagrams: Diagram[] = [
     id: 'interfaccia-io',
     title: 'Interfaccia di un dispositivo di I/O',
     topic: 'io',
-    ref: 'Hamacher cap. 3',
     width: 620,
     height: 300,
     slots: [
@@ -316,7 +328,6 @@ export const diagrams: Diagram[] = [
     id: 'sommatore-ripple',
     title: 'Sommatore a propagazione di riporto',
     topic: 'arith',
-    ref: 'Hamacher cap. 9',
     width: 740,
     height: 240,
     slots: [
@@ -359,7 +370,6 @@ export const diagrams: Diagram[] = [
     id: 'processore-memoria',
     title: 'Processore e memoria principale',
     topic: 'cpu',
-    ref: 'Hamacher cap. 1',
     width: 620,
     height: 360,
     slots: [
@@ -389,7 +399,6 @@ export const diagrams: Diagram[] = [
     id: 'sistema-calcolo',
     title: 'Un sistema di calcolo',
     topic: 'io',
-    ref: 'Hamacher cap. 3',
     width: 620,
     height: 300,
     slots: [
@@ -417,7 +426,6 @@ export const diagrams: Diagram[] = [
     id: 'registri-controllo',
     title: 'Registri di controllo del processore',
     topic: 'irq',
-    ref: 'Hamacher cap. 3',
     width: 640,
     height: 290,
     slots: [
@@ -445,7 +453,6 @@ export const diagrams: Diagram[] = [
     id: 'catena-software',
     title: 'Dal sorgente al programma oggetto',
     topic: 'sw',
-    ref: 'Hamacher cap. 4',
     width: 620,
     height: 470,
     slots: [
@@ -481,7 +488,6 @@ export const diagrams: Diagram[] = [
     id: 'componenti-processore',
     title: 'Componenti principali di un processore',
     topic: 'cpu',
-    ref: 'Hamacher cap. 5',
     width: 620,
     height: 360,
     slots: [
@@ -511,7 +517,6 @@ export const diagrams: Diagram[] = [
     id: 'cinque-stadi',
     title: 'Organizzazione a cinque stadi',
     topic: 'cpu',
-    ref: 'Hamacher cap. 5',
     width: 480,
     height: 420,
     slots: [
@@ -548,7 +553,6 @@ export const diagrams: Diagram[] = [
     id: 'datapath',
     title: 'Percorso dei dati di un processore',
     topic: 'cpu',
-    ref: 'Hamacher cap. 5',
     width: 560,
     height: 470,
     slots: [
@@ -592,7 +596,6 @@ export const diagrams: Diagram[] = [
     id: 'controllo-cablato',
     title: 'Generazione dei segnali di controllo',
     topic: 'cpu',
-    ref: 'Hamacher cap. 5',
     width: 640,
     height: 320,
     slots: [
@@ -627,7 +630,6 @@ export const diagrams: Diagram[] = [
     id: 'controllo-microprogrammato',
     title: 'Unità di controllo microprogrammata',
     topic: 'cpu',
-    ref: 'Hamacher cap. 5',
     width: 520,
     height: 340,
     slots: [
@@ -657,7 +659,6 @@ export const diagrams: Diagram[] = [
     id: 'superscalare',
     title: 'Processore superscalare con due unità di esecuzione',
     topic: 'pipe',
-    ref: 'Hamacher cap. 6',
     width: 640,
     height: 300,
     slots: [
@@ -700,7 +701,6 @@ export const diagrams: Diagram[] = [
     id: 'bus-singolo',
     title: 'Struttura a bus singolo',
     topic: 'io',
-    ref: 'Hamacher cap. 7',
     width: 620,
     height: 280,
     slots: [
@@ -728,7 +728,6 @@ export const diagrams: Diagram[] = [
     id: 'interfaccia-ingresso',
     title: 'Interfaccia di I/O per un dispositivo di ingresso',
     topic: 'io',
-    ref: 'Hamacher cap. 7',
     width: 620,
     height: 330,
     slots: [
@@ -760,7 +759,6 @@ export const diagrams: Diagram[] = [
     id: 'usb-albero',
     title: 'Struttura ad albero dell’USB',
     topic: 'io',
-    ref: 'Hamacher cap. 7',
     width: 620,
     height: 340,
     slots: [
@@ -794,7 +792,6 @@ export const diagrams: Diagram[] = [
     id: 'pci-sistema',
     title: 'Uso di un bus PCI in un sistema',
     topic: 'io',
-    ref: 'Hamacher cap. 7',
     width: 640,
     height: 380,
     slots: [
@@ -833,7 +830,6 @@ export const diagrams: Diagram[] = [
     id: 'chip-memoria',
     title: 'Organizzazione delle celle in un chip di memoria',
     topic: 'mem',
-    ref: 'Hamacher cap. 8',
     width: 620,
     height: 360,
     slots: [
@@ -874,7 +870,6 @@ export const diagrams: Diagram[] = [
     id: 'dram-sincrona',
     title: 'DRAM sincrona',
     topic: 'mem',
-    ref: 'Hamacher cap. 8',
     width: 640,
     height: 380,
     slots: [
@@ -914,7 +909,6 @@ export const diagrams: Diagram[] = [
     id: 'dma-sistema',
     title: 'Uso dei controllori DMA in un sistema',
     topic: 'io',
-    ref: 'Hamacher cap. 8',
     width: 620,
     height: 360,
     slots: [
@@ -953,7 +947,6 @@ export const diagrams: Diagram[] = [
     id: 'cache-diretta',
     title: 'Cache a mappatura diretta',
     topic: 'mem',
-    ref: 'Hamacher cap. 8',
     width: 620,
     height: 400,
     slots: [
@@ -995,7 +988,6 @@ export const diagrams: Diagram[] = [
     id: 'cache-associativa',
     title: 'Cache completamente associativa',
     topic: 'mem',
-    ref: 'Hamacher cap. 8',
     width: 620,
     height: 380,
     slots: [
@@ -1035,7 +1027,6 @@ export const diagrams: Diagram[] = [
     id: 'memoria-virtuale-org',
     title: 'Organizzazione della memoria virtuale',
     topic: 'vm',
-    ref: 'Hamacher cap. 8',
     width: 520,
     height: 420,
     slots: [
@@ -1069,7 +1060,6 @@ export const diagrams: Diagram[] = [
     id: 'sommatore-sottrattore',
     title: 'Circuito di addizione e sottrazione',
     topic: 'arith',
-    ref: 'Hamacher cap. 9',
     width: 620,
     height: 300,
     slots: [
@@ -1108,7 +1098,6 @@ export const diagrams: Diagram[] = [
     id: 'carry-lookahead',
     title: 'Sommatore con riporto anticipato',
     topic: 'arith',
-    ref: 'Hamacher cap. 9',
     width: 640,
     height: 320,
     slots: [
@@ -1153,7 +1142,6 @@ export const diagrams: Diagram[] = [
     id: 'moltiplicatore-sequenziale',
     title: 'Moltiplicatore binario sequenziale',
     topic: 'arith',
-    ref: 'Hamacher cap. 9',
     width: 620,
     height: 340,
     slots: [
@@ -1189,7 +1177,6 @@ export const diagrams: Diagram[] = [
     id: 'divisione-binaria',
     title: 'Circuito per la divisione binaria',
     topic: 'arith',
-    ref: 'Hamacher cap. 9',
     width: 620,
     height: 320,
     slots: [
@@ -1222,7 +1209,6 @@ export const diagrams: Diagram[] = [
     id: 'ieee-formati',
     title: 'Formati IEEE in virgola mobile',
     topic: 'ieee',
-    ref: 'Hamacher cap. 9',
     width: 640,
     height: 300,
     slots: [
@@ -1251,7 +1237,6 @@ export const diagrams: Diagram[] = [
     id: 'fp-somma',
     title: 'Unità di addizione in virgola mobile',
     topic: 'ieee',
-    ref: 'Hamacher cap. 9',
     width: 620,
     height: 420,
     slots: [
@@ -1287,21 +1272,20 @@ export const diagrams: Diagram[] = [
   },
 
   {
-    id: 'soc-sveglia',
-    title: 'Schema a blocchi della sveglia su chip',
+    id: 'soc-blocchi',
+    title: 'Sistema su singolo chip (SoC)',
     topic: 'io',
-    ref: 'Hamacher cap. 11',
     width: 640,
     height: 340,
     slots: [
       { id: 'proc', x: 90, y: 45, label: 'Processore' },
       { id: 'mem', x: 250, y: 45, label: 'Memoria su chip' },
-      { id: 'timer1', x: 410, y: 45, label: 'Timer dei minuti' },
-      { id: 'timer2', x: 560, y: 45, label: 'Timer del tono' },
+      { id: 'timer', x: 410, y: 45, label: 'Timer' },
+      { id: 'irqc', x: 560, y: 45, label: 'Controllore delle interruzioni' },
       { id: 'net', x: 320, y: 140, label: 'Rete di interconnessione' },
-      { id: 'pio', x: 110, y: 215, label: 'Interfaccia parallela PIO' },
-      { id: 'disp', x: 400, y: 285, label: 'Display a sette segmenti' },
-      { id: 'spk', x: 570, y: 285, label: 'Altoparlante' },
+      { id: 'pio', x: 110, y: 215, label: 'Interfaccia parallela' },
+      { id: 'adc', x: 400, y: 215, label: 'Convertitore A/D' },
+      { id: 'sensore', x: 400, y: 285, label: 'Sensore' },
     ],
     distractors: ['Controllore DMA', 'Cache', 'TLB', 'Ponte PCI'],
     svg: `
@@ -1327,14 +1311,16 @@ export const diagrams: Diagram[] = [
       <line ${A} x1="555" y1="235" x2="555" y2="265"/>
       <rect ${B} x="330" y="265" width="140" height="38" rx="4"/>
       <rect ${B} x="500" y="265" width="130" height="38" rx="4"/>
-      <text ${T} x="255" y="222" font-size="10">pulsanti</text>`,
+      <text ${T} x="255" y="222" font-size="10">seriale</text>
+      <text ${T} x="555" y="222" font-size="10">D/A</text>
+      <text ${T} x="565" y="289" font-size="10">attuatore</text>
+      <text ${TS} x="30" y="15" font-size="10">un solo chip</text>`,
   },
 
   {
     id: 'multiprocessore-uma',
     title: 'Multiprocessore a memoria condivisa (UMA)',
     topic: 'perf',
-    ref: 'Hamacher cap. 12',
     width: 620,
     height: 300,
     slots: [
@@ -1366,7 +1352,6 @@ export const diagrams: Diagram[] = [
     id: 'cmos-struttura',
     title: 'Struttura di un circuito CMOS',
     topic: 'tech',
-    ref: 'Hamacher App. A',
     width: 520,
     height: 340,
     slots: [
@@ -1398,7 +1383,6 @@ export const diagrams: Diagram[] = [
     id: 'master-slave',
     title: 'Flip-flop D master-slave',
     topic: 'ff',
-    ref: 'Hamacher App. A',
     width: 620,
     height: 280,
     slots: [
@@ -1433,7 +1417,6 @@ export const diagrams: Diagram[] = [
     id: 'registro-scorrimento',
     title: 'Registro a scorrimento',
     topic: 'ff',
-    ref: 'Hamacher App. A',
     width: 640,
     height: 240,
     slots: [
@@ -1469,7 +1452,6 @@ export const diagrams: Diagram[] = [
     id: 'contatore-3bit',
     title: 'Contatore binario a 3 bit',
     topic: 'ff',
-    ref: 'Hamacher App. A',
     width: 620,
     height: 250,
     slots: [
@@ -1503,7 +1485,6 @@ export const diagrams: Diagram[] = [
     id: 'decoder-2-4',
     title: 'Decodificatore a due ingressi e quattro uscite',
     topic: 'comb',
-    ref: 'Hamacher App. A',
     width: 560,
     height: 330,
     slots: [
@@ -1541,7 +1522,6 @@ export const diagrams: Diagram[] = [
     id: 'mux-4-1',
     title: 'Multiplexer a quattro ingressi',
     topic: 'comb',
-    ref: 'Hamacher App. A',
     width: 560,
     height: 320,
     slots: [
@@ -1572,7 +1552,6 @@ export const diagrams: Diagram[] = [
     id: 'pld-blocchi',
     title: 'Schema a blocchi di un PLD',
     topic: 'tech',
-    ref: 'Hamacher App. A',
     width: 640,
     height: 280,
     slots: [
@@ -1601,7 +1580,6 @@ export const diagrams: Diagram[] = [
     id: 'fpga',
     title: 'Schema concettuale di una FPGA',
     topic: 'tech',
-    ref: 'Hamacher App. A',
     width: 520,
     height: 420,
     slots: [
@@ -1637,7 +1615,6 @@ export const diagrams: Diagram[] = [
     id: 'macchina-stati',
     title: 'Modello formale di una macchina a stati finiti',
     topic: 'ff',
-    ref: 'Hamacher App. A',
     width: 620,
     height: 320,
     slots: [

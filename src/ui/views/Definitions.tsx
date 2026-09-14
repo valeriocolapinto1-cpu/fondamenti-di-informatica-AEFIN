@@ -4,6 +4,7 @@ import { TOPIC_TITLES } from '~/content';
 import { definitions } from '~/content/definitions';
 import type { Definition } from '~/content/definitions';
 import type { TopicId } from '~/content/types';
+import { TopicRef } from '~/ui/components/TopicRef';
 import { Rich } from '~/ui/components/Rich';
 
 /** Ordine alfabetico italiano: «è» accanto a «e», non in fondo. */
@@ -43,8 +44,7 @@ function DefinitionCard({ definition }: { definition: Definition }): JSX.Element
       <Rich class="def-s" html={definition.short} />
       {definition.detail && <Rich class="def-d" html={definition.detail} />}
       <div class="def-f">
-        <span class="def-topic">{TOPIC_TITLES[definition.topic]}</span>
-        <span class="def-ref">{definition.ref}</span>
+        <TopicRef class="def-topic" topic={definition.topic} />
       </div>
     </article>
   );
@@ -68,9 +68,9 @@ export function Definitions(): JSX.Element {
       <p class="eyebrow">Formulario</p>
       <h1 class="h">Definizioni</h1>
       <p class="lead">
-        Solo i termini che l'esame chiede di saper enunciare. La prima frase è la definizione da
-        scrivere sul foglio; il resto è la precisazione che separa una risposta sufficiente da una
-        giusta. {definitions.length} voci.
+        I termini che conviene saper enunciare senza pensarci. La prima frase è la definizione
+        da scrivere sul foglio; il resto è la precisazione che separa una risposta sufficiente da
+        una giusta. {definitions.length} voci.
       </p>
 
       <div class="panel" style="margin-top:14px">
@@ -122,8 +122,8 @@ export function Definitions(): JSX.Element {
       </div>
 
       <div class="disclaim">
-        Definizioni riscritte in forma originale a partire dal programma del corso; per gli
-        enunciati integrali fai riferimento a Hamacher.
+        Definizioni scritte per questo sito. Sono la formulazione più breve che regga: se una
+        non ti torna, il rimando accanto apre il modulo che la spiega per esteso.
       </div>
     </section>
   );

@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { asmWrite, figures, links, mcq, open, topics, traps, validateContent } from './index';
-import { FIGURE_AREAS } from './figures';
+import { asmWrite, links, mcq, open, topics, traps, TOPIC_GROUPS, validateContent } from './index';
 import { definitions } from './definitions';
 import { diagrams, diagramById } from './diagrams';
 import { outline } from './outline';
@@ -16,7 +15,6 @@ describe('content layer', () => {
     expect(open.length).toBeGreaterThanOrEqual(19);
     expect(asmWrite.length).toBeGreaterThanOrEqual(2);
     expect(topics.length).toBeGreaterThanOrEqual(17);
-    expect(figures.length).toBeGreaterThanOrEqual(150);
     expect(traps.length).toBeGreaterThanOrEqual(5);
     expect(links.length).toBeGreaterThanOrEqual(6);
   });
@@ -53,15 +51,32 @@ describe('content layer', () => {
     }
   });
 
-  it('cita Hamacher su ogni quesito e ogni scheda', () => {
-    for (const item of [...mcq, ...open, ...asmWrite, ...topics]) {
-      expect(item.ref, `manca il riferimento su ${item.id}`).toMatch(/Hamacher/);
+  it('rimanda a un modulo che esiste, da ogni quesito e da ogni schema', () => {
+    // Il rimando non è più un capitolo di un libro che il sito non può
+    // aprire: è una destinazione interna, quindi un id sbagliato qui è un
+    // collegamento rotto in faccia a chi studia.
+    const known = new Set<string>(topics.map((topic) => topic.id));
+    for (const item of [...mcq, ...open, ...asmWrite, ...definitions, ...diagrams]) {
+      expect(known.has(item.topic), `${item.id}: modulo "${item.topic}" inesistente`).toBe(true);
     }
   });
 
-  it('marca le trappole come percezioni da verificare', () => {
-    // La specifica chiede che non passino per regole confermate.
-    expect(traps.every((trap) => trap.status === 'da-verificare')).toBe(true);
+  it('non lascia in giro riferimenti al libro di testo', () => {
+    // I contenuti sono originali e non devono appoggiarsi alla struttura di
+    // un'opera altrui: la bibliografia sta nelle Note, non dentro i quesiti.
+    const testo = JSON.stringify([mcq, open, asmWrite, definitions, diagrams, topics, traps]);
+    expect(testo).not.toMatch(/Hamacher/i);
+  });
+
+  it('le convenzioni parlano di notazione, non di persone o di esami', () => {
+    // È il presidio che ha sostituito il badge «da verificare»: una voce che
+    // dice cosa qualcuno pretende, gradisce o penalizza è un'affermazione su
+    // una persona reale, e qui non ci va — con o senza badge.
+    const vietate =
+      /docent|profess|\besame\b|\bappell|corso di|gradisc|pretend|penalizz|secondo gli appunti/i;
+    for (const trap of traps) {
+      expect(vietate.test(`${trap.title} ${trap.body}`), `"${trap.id}"`).toBe(false);
+    }
   });
 
   it('ogni modulo ha il ripasso «in due minuti» e le domande di autoverifica', () => {
@@ -155,12 +170,11 @@ describe('content layer', () => {
     }
   });
 
-  it('le definizioni stanno in una frase e citano il testo', () => {
+  it('le definizioni stanno in una frase e puntano al modulo giusto', () => {
     expect(definitions.length).toBeGreaterThanOrEqual(50);
     expect(new Set(definitions.map((item) => item.id)).size).toBe(definitions.length);
     const titles = new Set(topics.map((topic) => topic.id));
     for (const item of definitions) {
-      expect(item.ref, `manca il riferimento su ${item.id}`).toMatch(/Hamacher/);
       expect(titles.has(item.topic), `argomento sconosciuto in ${item.id}`).toBe(true);
       // Se non sta in una frase non è una definizione: è un modulo di studio.
       expect(item.short.trim().length, item.id).toBeGreaterThan(20);
@@ -195,46 +209,21 @@ describe('content layer', () => {
         );
       }
       expect(diagram.distractors.length, `${diagram.id}: senza distrattori`).toBeGreaterThanOrEqual(2);
-      expect(diagram.ref).toMatch(/Hamacher/);
     }
   });
 
-  it('ogni figura che rimanda a uno schema lo trova davvero', () => {
-    for (const figure of figures) {
-      if (!figure.diagramId) continue;
-      expect(diagramById(figure.diagramId), `figura ${figure.id}`).toBeDefined();
-    }
-  });
-
-  it('il catalogo delle figure è completo e ben formato', () => {
-    // È la trascrizione dell'indice delle tavole del testo: se si accorcia,
-    // qualcosa è andato perso.
-    expect(figures.length).toBeGreaterThanOrEqual(150);
-    expect(new Set(figures.map((figure) => figure.id)).size).toBe(figures.length);
-
-    const titles = new Set(topics.map((topic) => topic.id));
-    for (const figure of figures) {
-      expect(figure.code.trim(), figure.id).not.toBe('');
-      expect(figure.desc.trim().length, `${figure.id}: descrizione troppo corta`).toBeGreaterThan(
-        15,
-      );
-      expect(figure.area.trim(), `${figure.id}: capitolo mancante`).not.toBe('');
-      expect(titles.has(figure.topic), `${figure.id}: argomento sconosciuto`).toBe(true);
-    }
-
-    // Ogni capitolo deve avere almeno una figura, altrimenti il filtro mostra
-    // una sezione vuota.
-    for (const area of FIGURE_AREAS) {
-      expect(figures.some((figure) => figure.area === area), area).toBe(true);
-    }
-  });
-
-  it('ogni schema ridisegnato è raggiungibile dal catalogo', () => {
-    // Uno schema che nessuna figura cita non compare in Riferimenti: sarebbe
-    // lavoro invisibile.
-    const citati = new Set(figures.map((figure) => figure.diagramId).filter(Boolean));
+  it('nessuno schema resta invisibile in Riferimenti', () => {
+    // La pagina raggruppa gli schemi per area del programma. Se l'argomento di
+    // uno schema non appartiene a nessun blocco, quello schema non compare da
+    // nessuna parte: lavoro fatto e mai mostrato. Prima lo stesso rischio era
+    // coperto dal catalogo delle figure; adesso che il catalogo non c'è più,
+    // il presidio è questo.
+    const raggruppati = new Set(TOPIC_GROUPS.flatMap((group) => group.topicIds));
     for (const diagram of diagrams) {
-      expect(citati.has(diagram.id), `schema orfano: ${diagram.id}`).toBe(true);
+      expect(
+        raggruppati.has(diagram.topic),
+        `schema invisibile: "${diagram.id}" sta in "${diagram.topic}", che non è in nessuna area`,
+      ).toBe(true);
     }
     expect(diagrams.length).toBeGreaterThanOrEqual(40);
   });

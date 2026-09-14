@@ -3,6 +3,7 @@ import { useEffect } from 'preact/hooks';
 import { topicById } from '~/content';
 import { hrefFor, NAV_VIEWS, useRoute, VIEWS, type Route, type ViewId } from '~/lib/router';
 import { t } from '~/lib/i18n';
+import { SITE_TITLE } from '~/lib/site';
 import { Dashboard } from '~/ui/views/Dashboard';
 import { Study } from '~/ui/views/Study';
 import { Simulator } from '~/ui/views/Simulator';
@@ -19,23 +20,21 @@ const TAB_LABELS: Record<ViewId, string> = {
   def: 'Definizioni',
   exam: 'Simulatore',
   train: 'Allenamento',
-  ref: 'Riferimenti',
+  ref: 'Schemi',
   carriera: 'Carriera',
   note: 'Note & privacy',
 };
 
-const SITE = "AE·FIN — Palestra d'esame";
-
 /** Descrizione per vista: è quella che finisce nell'anteprima di un link. */
 const VIEW_DESCRIPTIONS: Record<ViewId, string> = {
-  dash: "Studio e simulatore d'esame non ufficiale per Architettura degli Elaboratori. Domande inventate nello stile della prova, con rimandi ai capitoli di Hamacher.",
+  dash: 'Palestra di Architettura degli Elaboratori: diciassette moduli di teoria, ottantacinque esercizi svolti e un generatore di prove di autovalutazione che si correggono da sole.',
   study:
     'Diciassette moduli in ordine di studio, pensati per partire da zero: rampa d’ingresso, teoria distesa, esempio svolto, autoverifica e cinque esercizi con svolgimento.',
-  def: "I termini che l'esame chiede di saper enunciare, una frase ciascuno, con filtro per testo e per argomento.",
-  exam: 'Genera prove nel formato della scritta: numeri, tabelle di verità, schemi e assembly cambiano a ogni generazione, e la correzione è automatica dove può esserlo.',
+  def: 'I termini da saper enunciare, una frase ciascuno, con filtro per testo e per argomento.',
+  exam: 'Genera una prova di autovalutazione: numeri, tabelle di verità, schemi e assembly cambiano a ogni generazione, e la correzione è automatica dove può esserlo.',
   train:
     'Quattro palestre che fanno fare il procedimento e correggono ogni passaggio: binario a mano, schemi da completare, verità e Karnaugh, assembly a mente.',
-  ref: 'Il catalogo completo delle figure del testo, capitolo per capitolo, con 45 schemi ridisegnati in SVG originale su cui esercitarsi.',
+  ref: 'Quarantacinque schemi di architettura disegnati per questo sito, raggruppati per area del programma: si guardano per capire come sono collegate le parti, o si completano come esercizio.',
   carriera:
     'A che punto sei sul programma: una spunta per modulo, che metti tu quando lo hai capito davvero.',
   note: 'Che cos’è questo sito e che cosa non è, che cosa salva nel browser (niente cookie, niente tracciamento, nessun server) e a chi appartengono i contenuti.',
@@ -57,14 +56,14 @@ function useHead(route: Route): void {
     const name = !route.known || missingTopic ? 'Pagina non trovata' : (topic?.title ?? null);
     document.title =
       name === null && route.view === 'dash'
-        ? SITE
-        : `${name ?? TAB_LABELS[route.view]} · ${SITE}`;
+        ? SITE_TITLE
+        : `${name ?? TAB_LABELS[route.view]} · ${SITE_TITLE}`;
 
     const description =
       !route.known || missingTopic
         ? "L'indirizzo non corrisponde a nessuna pagina del sito."
         : topic
-          ? `${topic.blurb} · ${topic.ref}`
+          ? topic.blurb
           : VIEW_DESCRIPTIONS[route.view];
     document.querySelector('meta[name="description"]')?.setAttribute('content', description);
   }, [route.view, route.param, route.known]);
@@ -80,8 +79,8 @@ function Header({ active }: { active: ViewId | null }): JSX.Element {
             AE
           </span>
           <span class="brand-name">
-            Palestra d'esame
-            <small>Architettura degli Elaboratori</small>
+            Architettura degli Elaboratori
+            <small>teoria, esercizi svolti e prove</small>
           </span>
         </div>
         <nav class="tabs" aria-label={t('Sezioni del sito')}>
@@ -115,9 +114,9 @@ function Footer(): JSX.Element {
           scritto che le domande non sono prove vere.
         */}
         <p class="foot-note" style="margin:0">
-          AE·FIN — palestra d'esame · strumento <b>non ufficiale</b> scritto da uno studente,
-          non affiliato alla Sapienza né al corso · le domande sono inventate, non sono prove
-          d'esame reali · nessun dato esce dal tuo browser
+          AE·FIN — palestra di architettura degli elaboratori · strumento{' '}
+          <b>indipendente</b> scritto da uno studente, non è il sito di nessun corso · le domande
+          sono scritte qui, non sono prove d'esame reali · nessun dato esce dal tuo browser
         </p>
         <nav class="foot-nav" aria-label={t('Mappa del sito')}>
           {VIEWS.map((view) => (

@@ -24,9 +24,7 @@ export function TopicCard({ topic, index }: { topic: Topic; index: number }): JS
       </div>
       <h3>{topic.title}</h3>
       <p>{topic.blurb}</p>
-      <div class="ref">
-        {topic.ref} · {readingMinutes(topic.body)} min
-      </div>
+      <div class="ref">{readingMinutes(topic.body)} min</div>
     </a>
   );
 }
@@ -116,7 +114,7 @@ function TopicDetail({ topic }: { topic: Topic }): JSX.Element {
       <div class="detail-head" style="margin-top:6px">
         <div>
           <p class="eyebrow">
-            Modulo {position + 1} di {topics.length} · {topic.ref}
+            Modulo {position + 1} di {topics.length}
           </p>
           <h1 class="h" style="font-size:clamp(26px,3.4vw,34px)">{topic.title}</h1>
         </div>
@@ -216,8 +214,9 @@ function TopicDetail({ topic }: { topic: Topic }): JSX.Element {
             <>
               <h2 class="sec">Schemi di questo modulo</h2>
               <p class="lead">
-                Studiali finché li rifai a memoria: all'esame uno schema da completare c'è
-                sempre.
+                Studiali finché li rifai a memoria. Saper ridisegnare uno schema è il modo più
+                spiccio di scoprire se hai capito come sono collegate le parti, o se hai solo
+                letto il paragrafo.
               </p>
               {diagrams.map((diagram) => (
                 <div key={diagram.id} style="margin-bottom:22px">
@@ -308,7 +307,7 @@ export function Study({ topicId }: { topicId: string | null }): JSX.Element {
   return (
     <section class="view">
       <p class="eyebrow">Moduli di studio</p>
-      <h1 class="h">La teoria, per come la chiede all'esame</h1>
+      <h1 class="h">La teoria, spiegata per essere usata</h1>
       <p class="lead">
         Diciassette moduli in ordine di studio, dal binario alle prestazioni: ognuno con il
         ripasso «in due minuti», la teoria distesa e le domande per verificare da solo se hai

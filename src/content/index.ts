@@ -3,12 +3,11 @@ import { open } from './open';
 import { asmWrite } from './asmWrite';
 import { diagrams } from './diagrams';
 import { topics, TOPIC_GROUPS } from './topics';
-import { figures } from './figures';
 import { traps } from './traps';
 import { links } from './links';
 import type { Topic, TopicId, Trap } from './types';
 
-export { mcq, open, asmWrite, topics, TOPIC_GROUPS, figures, traps, links };
+export { mcq, open, asmWrite, topics, TOPIC_GROUPS, traps, links };
 export type { TopicGroup } from './topics';
 export type * from './types';
 
@@ -36,7 +35,6 @@ const MINIMUMS = {
   open: 12,
   asmWrite: 2,
   topics: 17,
-  figures: 150,
   traps: 5,
   links: 6,
 } as const;
@@ -61,7 +59,7 @@ export function validateContent(): string[] {
   const problems: string[] = [];
 
   // — conteggi minimi —
-  const banks = { mcq, open, asmWrite, topics, figures, traps, links };
+  const banks = { mcq, open, asmWrite, topics, traps, links };
   for (const [name, min] of Object.entries(MINIMUMS)) {
     const size = banks[name as keyof typeof banks].length;
     if (size < min) problems.push(`banca "${name}": ${size} voci, ne servono almeno ${min}`);
@@ -73,9 +71,17 @@ export function validateContent(): string[] {
     if (dupes.length) problems.push(`banca "${name}": id duplicati → ${dupes.join(', ')}`);
   }
 
-  // — ogni voce d'esame cita Hamacher —
-  for (const item of [...mcq, ...open, ...asmWrite, ...topics]) {
-    if (!item.ref.trim()) problems.push(`"${item.id}": riferimento Hamacher mancante`);
+  // — ogni voce rimanda a un modulo che esiste davvero —
+  //
+  // Ha sostituito il vecchio «ogni voce cita Hamacher», ed è un controllo più
+  // severo: prima bastava che una stringa contenesse una parola, adesso il
+  // rimando è una destinazione dentro il sito e un id sbagliato è un
+  // collegamento rotto che il test intercetta.
+  const knownTopics = new Set<string>(topics.map((topic) => topic.id));
+  for (const item of [...mcq, ...open, ...asmWrite, ...diagrams]) {
+    if (!knownTopics.has(item.topic)) {
+      problems.push(`"${item.id}": rimanda al modulo "${item.topic}", che non esiste`);
+    }
   }
 
   // — crocette ben formate —
