@@ -201,7 +201,7 @@ costante `REPO` lì.
 ## Stack
 
 Vite 7 · Preact 10 · TypeScript (strict) · Tailwind CSS 4 · Vitest · vite-plugin-pwa.
-Font self-hostati (`@fontsource`): nessuna chiamata a servizi esterni a runtime.
+Font Geist e Geist Mono self-hostati (`src/assets/fonts`, licenza OFL): nessuna chiamata a servizi esterni a runtime.
 
 ## Note legali e contatti
 

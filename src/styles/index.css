@@ -1,13 +1,17 @@
-/* Font self-hostati: nessuna chiamata a CDN esterni a runtime (§9) e
-   funzionamento offline. Subset `latin` — copre l'italiano accentato. */
-@import '@fontsource-variable/space-grotesk';
-@import '@fontsource/ibm-plex-sans/latin-400.css';
-@import '@fontsource/ibm-plex-sans/latin-500.css';
-@import '@fontsource/ibm-plex-sans/latin-600.css';
-@import '@fontsource/ibm-plex-sans/latin-700.css';
-@import '@fontsource/ibm-plex-mono/latin-400.css';
-@import '@fontsource/ibm-plex-mono/latin-500.css';
-@import '@fontsource/ibm-plex-mono/latin-600.css';
+/* Font self-hostati (Geist e Geist Mono, licenza OFL): nessuna chiamata a CDN esterni a runtime e
+   funzionamento offline. Gli stessi font degli altri siti di studio. */
+@font-face {
+  font-family: 'Geist';
+  src: url('../assets/fonts/Geist-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('../assets/fonts/GeistMono-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
 
 @import 'tailwindcss';
 

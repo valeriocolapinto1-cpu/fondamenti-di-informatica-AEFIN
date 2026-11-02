@@ -95,6 +95,17 @@
     color: var(--color-cyan);
     text-decoration: none;
   }
+
+  /* Link dentro un testo: sottolineati, non distinguibili solo dal colore (WCAG 1.4.1) */
+  p a:not(.btn),
+  li a:not(.btn),
+  .lead a,
+  .disclaim a,
+  .fn a {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+  }
   a:hover {
     text-decoration: underline;
   }

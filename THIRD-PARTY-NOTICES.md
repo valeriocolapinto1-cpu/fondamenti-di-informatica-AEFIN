@@ -6,8 +6,7 @@ e, dove il testo è incluso nel repository, è indicato nella colonna *Note*.
 | Componente | Versione | Licenza | Note |
 |---|---|---|---|
 | Preact | ^10.29 | MIT | Libreria UI inclusa nel bundle |
-| Space Grotesk Variable (@fontsource-variable) | ^5.2 | SIL Open Font License 1.1 | Font self-hosted nel bundle |
-| IBM Plex Sans e IBM Plex Mono (@fontsource) | ^5.2 | SIL Open Font License 1.1 | Font self-hosted nel bundle |
+| Geist e Geist Mono (font) | variable | SIL Open Font License 1.1 | `src/assets/fonts/`, inclusi nel bundle |
 | Tailwind CSS | ^4.1 | MIT | Solo build: il CSS risultante è nel bundle |
 | Vite, vite-plugin-pwa, Vitest, TypeScript | vedi package.json | MIT / Apache-2.0 | Solo strumenti di sviluppo e build |
 
