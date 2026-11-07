@@ -26,6 +26,10 @@ export default defineConfig(() => ({
     preact(),
     tailwindcss(),
     VitePWA({
+      // Il sito si è spostato su Study Hub: il service worker generato si
+      // autodistrugge (svuota le cache e si deregistra) e non viene più registrato.
+      selfDestroying: true,
+      injectRegister: false,
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg'],
       manifest: {
