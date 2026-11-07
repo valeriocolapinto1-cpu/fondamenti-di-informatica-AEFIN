@@ -1,5 +1,12 @@
 # AE·FIN — Palestra di Architettura degli Elaboratori
 
+> **Il sito si è spostato.** Fondamenti di Informatica (AE·FIN) ora fa parte di **Study Hub**, il sito di studio unico di Ingegneria Elettronica:
+> <https://valeriocolapinto1-cpu.github.io/study-hub/it/anno-1/fondamenti-informatica/>
+>
+> Le pagine pubblicate da questo repository rimandano alle pagine corrispondenti del nuovo sito (il service worker,
+> se c'era, si disattiva da solo). Il codice resta qui come archivio; la storia è conservata anche in
+> [`study-hub/legacy/`](https://github.com/valeriocolapinto1-cpu/study-hub/tree/main/legacy).
+
 Sito di studio e **generatore di prove di autovalutazione** per Architettura degli Elaboratori:
 complemento a 2, algebra di Boole e Karnaugh, reti combinatorie e sequenziali, percorso dati,
 assembly, interruzioni e I/O, pipeline, cache, memoria virtuale, IEEE 754.
